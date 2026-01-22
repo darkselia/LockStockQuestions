@@ -1,7 +1,7 @@
-# Vite app
+# LockStockQuestions
 
 ## Описание
-Vite app — это приложение, разработанное с использованием Vue 3. 
+LockStockQuestions — это приложение, разработанное с использованием Vue 3. 
 Оно использует современные технологии, такие как Vue Router, Pinia и Vuetify, для создания удобного пользовательского интерфейса.
 
 ## Установка
@@ -46,6 +46,10 @@ Vite app — это приложение, разработанное с испо
 - **Линтинг кода:**
   ```bash
   npm run lint
+  ```
+- **Преобразование таблицы вопросов из CSV в JSON:**
+  ```bash
+  py scripts/convert_questions.py data/questions.csv data/questions.json
   ```
 
 ## Используемые технологии
