@@ -20,13 +20,6 @@ export const myCustomLightTheme: ThemeDefinition = {
     warning: '#FB8C00',
   },
   variables: {
-    'border-color': '#000000',
-    'border-opacity': 0.12,
-    'border-radius': '8px',
-    'border-button-radius': '12px',
-    'high-emphasis-opacity': 0.87,
-    'medium-emphasis-opacity': 0.6,
-    'disabled-opacity': 0.38,
     'idle-opacity': 0.04,
     'hover-opacity': 0.04,
     'focus-opacity': 0.12,

@@ -11,6 +11,7 @@ import * as components from 'vuetify/components';
 import * as directives from 'vuetify/directives';
 
 import { myCustomLightTheme } from '@/assets/theme';
+import { ru } from 'vuetify/locale';
 
 const vuetify = createVuetify({
   components,
@@ -21,6 +22,7 @@ const vuetify = createVuetify({
   },
   locale: {
     locale: 'ru',
+    messages: { ru },
   },
   defaults: {
     global: {
