@@ -10,15 +10,15 @@ import { createVuetify } from 'vuetify';
 import * as components from 'vuetify/components';
 import * as directives from 'vuetify/directives';
 
-import { myCustomLightTheme } from '@/assets/theme';
+import { myCustomGoldTheme } from '@/assets/theme';
 import { ru } from 'vuetify/locale';
 
 const vuetify = createVuetify({
   components,
   directives,
   theme: {
-    defaultTheme: 'myCustomLightTheme',
-    themes: { myCustomLightTheme },
+    defaultTheme: 'myCustomGoldTheme',
+    themes: { myCustomGoldTheme },
   },
   locale: {
     locale: 'ru',
