@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import MainPage from '@/views/MainPage.vue';
+import EpisodePage from '@/views/EpisodePage.vue';
 import { useQuestionsStore } from '@/stores/questions';
 
 const router = createRouter({
@@ -13,17 +14,30 @@ const router = createRouter({
     {
       path: '/episode/:id',
       name: 'episode',
-      component: MainPage,
+      component: EpisodePage,
     },
   ],
-
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition;
+    }
+    if (to.hash) {
+      return {
+        el: to.hash,
+        top: 64,
+        behavior: 'smooth',
+      };
+    }
+    return { left: 0, top: 0 };
+  },
 });
 
-router.beforeEach(() => {
+router.beforeEach(async() => {
   const questionsStore = useQuestionsStore();
   if (questionsStore.allQuestions === null) {
-    return questionsStore.loadQuestions();
+    await questionsStore.loadQuestions();
   }
+  return true;
 });
 
 
