@@ -28,15 +28,30 @@ const metadata = computed(() => {
   };
 });
 
-const handleRandomEpisode = () => {
+function handleRandom(type: 'episode' | 'question') {
   const list = episodeSummaries.value;
   if (!list.length) {
     return;
   }
   const choice = list[Math.floor(Math.random() * list.length)];
-  void router.push({ name: 'episode', params: { id: choice.id } });
-};
-
+  if (type === 'episode') {
+    void router.push({ name: 'episode', params: { id: choice.id } });
+    return;
+  }
+  if (type === 'question') {
+    const questions = questionsStore.getByVideo(choice.id);
+    if (!questions || !questions.length) {
+      return;
+    }
+    const questionChoice = questions[Math.floor(Math.random() * questions.length)];
+    void router.push({
+      name: 'episode',
+      params: { id: choice.id },
+      query: { questions: String(questionChoice['question-id']) },
+    });
+    return;
+  }
+}
 </script>
 
 <template>
@@ -82,17 +97,17 @@ const handleRandomEpisode = () => {
     </div>
 
     <section class="content-wrapper">
-      <section class="episodes-block">
+      <section id="episodes" class="episodes-block">
         <div class="episodes-header">
           <div>
             <h2>Выпуски</h2>
             <p>Выберите номер, чтобы открыть вопросы конкретного выпуска шоу. </p>
           </div>
           <div class="random-buttons">
-            <v-btn color="primary" variant="tonal" density="comfortable" @click="handleRandomEpisode">
+            <v-btn color="primary" variant="tonal" density="comfortable" @click="handleRandom('episode')">
               Случайный выпуск
             </v-btn>
-            <v-btn color="primary" variant="tonal" density="comfortable" @click="handleRandomEpisode">
+            <v-btn color="primary" variant="tonal" density="comfortable" @click="handleRandom('question')">
               Случайный вопрос
             </v-btn>
           </div>
@@ -128,6 +143,7 @@ const handleRandomEpisode = () => {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 28px;
+  align-items: center;
   background: linear-gradient(
     135deg,
     rgb(var(--v-theme-primary-lighten-1)) 0%,
@@ -139,13 +155,6 @@ const handleRandomEpisode = () => {
   margin: 0 20px 30px;
   border-bottom: 10px solid rgb(var(--v-theme-primary-darken-1));
   border-right: 10px solid rgb(var(--v-theme-primary-darken-1));
-  position: relative;
-  overflow: hidden;
-}
-
-.hero-text {
-  position: relative;
-  z-index: 1;
 }
 
 .hero-text h1 {
@@ -196,6 +205,7 @@ const handleRandomEpisode = () => {
   backdrop-filter: blur(8px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
   width: 100%;
+  height: min-content;
 }
 
 .hero-card h3 {
@@ -287,7 +297,7 @@ const handleRandomEpisode = () => {
   transform: translateY(-6px);
   box-shadow: 0 12px 32px rgba(var(--v-theme-primary), 0.2);
   border-color: rgb(var(--v-theme-primary));
-  background: linear-gradient(135deg, rgb(var(--v-theme-surface)) 45%, rgba(var(--v-theme-primary))  100%);
+  background: linear-gradient(135deg, rgb(var(--v-theme-surface)) 45%, rgba(var(--v-theme-primary)) 100%);
 }
 
 .episode-number {
