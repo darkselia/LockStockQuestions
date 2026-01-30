@@ -7,7 +7,7 @@ export const myCustomLightTheme: ThemeDefinition = {
     'on-background': '#1F1F1F',
     surface: '#efefef',
     'surface-variant': '#EAEAEA',
-    'on-surface-variant': '#424242',
+    'on-surface': '#424242',
     primary: '#670b24',
     'primary-lighten-1': '#8d0f31',
     'primary-darken-1': '#340512',
@@ -41,8 +41,8 @@ export const myCustomLightTheme: ThemeDefinition = {
 export const myCustomGoldTheme: ThemeDefinition = {
   dark: true,
   colors: {
-    background: '#2c2927',
-    'on-background': '#db892f',
+    background: '#1b0f09',
+    'on-background': '#e89132',
     surface: '#ccc5b4',
     'surface-variant': '#8a866c',
     'on-surface': '#393632',
