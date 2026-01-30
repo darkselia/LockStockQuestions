@@ -19,7 +19,6 @@ onMounted(() => {
   <v-navigation-drawer v-if="!smAndUp" v-model="isMenuOpen">
     <v-list-item title="Вопросы из шоу LockStock" />
     <v-divider class="mb-2" color="rgb(var(--v-theme-primary-darken-1))" />
-    <v-list-item :to="{ name: 'home' }" link title="Главная" />
     <v-list-item :to="{ path: '/', hash: '#episodes' }" link title="Все выпуски" />
     <v-list-item :to="{ name: 'rules' }" link title="Правила шоу" />
   </v-navigation-drawer>
@@ -41,7 +40,6 @@ onMounted(() => {
 
     <template #append>
       <div v-if="smAndUp" class="container">
-        <v-btn :to="{ name: 'home' }" variant="text" color="on-primary">Главная</v-btn>
         <v-btn :to="{ path: '/', hash: '#episodes' }" variant="text" color="on-primary">Все выпуски</v-btn>
         <v-btn :to="{ name: 'rules' }" variant="text" color="on-primary">Правила шоу</v-btn>
       </div>

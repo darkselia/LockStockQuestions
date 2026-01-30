@@ -4,6 +4,9 @@
 LockStockQuestions — это приложение, разработанное с использованием Vue 3. 
 Оно использует современные технологии, такие как Vue Router, Pinia и Vuetify, для создания удобного пользовательского интерфейса.
 
+## Сайт проекта
+[Посетить сайт LockStockQuestions](https://darkselia.github.io/LockStockQuestions)
+
 ## Установка
 
 1. Склонируйте репозиторий:
