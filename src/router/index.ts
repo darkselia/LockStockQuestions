@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import MainPage from '@/views/MainPage.vue';
 import EpisodePage from '@/views/EpisodePage.vue';
+import RulesPage from '@/views/RulesPage.vue';
 import { useQuestionsStore } from '@/stores/questions';
 
 const router = createRouter({
@@ -15,6 +16,11 @@ const router = createRouter({
       path: '/episode/:id',
       name: 'episode',
       component: EpisodePage,
+    },
+    {
+      path: '/rules',
+      name: 'rules',
+      component: RulesPage,
     },
   ],
   scrollBehavior(to, from, savedPosition) {
