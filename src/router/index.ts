@@ -34,6 +34,12 @@ const router = createRouter({
         behavior: 'smooth',
       };
     }
+    const isSameEpisode = to.name === 'episode' &&
+      from.name === 'episode' &&
+      to.params.id === from.params.id;
+    if (isSameEpisode) {
+      return false;
+    }
     return { left: 0, top: 0 };
   },
 });
