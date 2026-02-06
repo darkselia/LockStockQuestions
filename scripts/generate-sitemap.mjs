@@ -1,7 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { SITE_ORIGIN } from '@/constants/seo.ts'
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -11,10 +10,15 @@ const dataDir = path.join(projectRoot, 'data');
 const sitemapPath = path.join(publicDir, 'sitemap.xml');
 const questionsPath = path.join(dataDir, 'questions.json');
 
-const siteOrigin = SITE_ORIGIN;
+const siteOrigin = resolveSiteOrigin();
 
 const staticRoutes = [ '/', '/rules' ];
-
+function resolveSiteOrigin() {
+  const runtimeOrigin = typeof window !== 'undefined' && window.location?.origin ? window.location.origin : '';
+  const fallbackOrigin = 'https://darkselia.github.io/LockStockQuestions';
+  const rawOrigin =  runtimeOrigin || fallbackOrigin;
+  return rawOrigin.replace(/\/$/, '');
+}
 function readEpisodeIds() {
   try {
     const raw = fs.readFileSync(questionsPath, 'utf-8');

@@ -80,21 +80,21 @@ function handleRandom(type: 'episode' | 'question') {
   if (!list.length) {
     return;
   }
-  const choice = list[Math.floor(Math.random() * list.length)];
+  const choice: any = list[Math.floor(Math.random() * list.length)];
   if (type === 'episode') {
-    void router.push({ name: 'episode', params: { id: choice.id } });
+    void router.push({ name: 'episode', params: { id: choice?.id } });
     return;
   }
   if (type === 'question') {
-    const questions = questionsStore.getByVideo(choice.id);
+    const questions = questionsStore.getByVideo(choice?.id);
     if (!questions || !questions.length) {
       return;
     }
     const questionChoice = questions[Math.floor(Math.random() * questions.length)];
     void router.push({
       name: 'episode',
-      params: { id: choice.id },
-      query: { questions: String(questionChoice['question-id']) },
+      params: { id: choice?.id },
+      query: { questions: String(questionChoice?['question-id']:'') },
     });
     return;
   }
