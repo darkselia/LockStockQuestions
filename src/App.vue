@@ -7,8 +7,9 @@ import PageFooter from '@/components/PageFooter.vue';
 
 <template>
   <v-app>
+    <a class="skip-link" href="#main-content">Перейти к основному содержимому</a>
     <AppBar />
-    <v-main>
+    <v-main id="main-content" tag="main">
       <RouterView />
     </v-main>
     <PageFooter />

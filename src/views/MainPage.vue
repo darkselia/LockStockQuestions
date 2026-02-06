@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import { RouterLink, useRouter } from 'vue-router';
+import { useSeoMeta } from '@/composables/useSeoMeta';
+import { useStructuredData } from '@/composables/useStructuredData';
+import { buildAbsoluteUrl } from '@/constants/seo';
 import { useQuestionsStore } from '@/stores/questions';
 
 const router = useRouter();
@@ -25,6 +28,50 @@ const metadata = computed(() => {
   return {
     totalEpisodes: episodeSummaries.value.length,
     totalQuestions,
+  };
+});
+
+const heroImageUrl = buildAbsoluteUrl('/cards.webp');
+const seoCopy = {
+  title: `LockStock: ${metadata.value.totalEpisodes} выпусков и ${metadata.value.totalQuestions} вопросов в открытом каталоге`,
+  description: `Просматривайте вопросы, подсказки и ответы из ${metadata.value.totalEpisodes} выпусков шоу LockStock — всего ${metadata.value.totalQuestions} записей с подробными комментариями.`,
+};
+
+useSeoMeta(() => ({
+  title: seoCopy.title,
+  description: seoCopy.description,
+  canonical: '/',
+  image: heroImageUrl,
+}));
+
+useStructuredData('home-website', () => ({
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'LockStock Questions',
+  url: buildAbsoluteUrl('/'),
+  description: seoCopy.description,
+  image: heroImageUrl,
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: `${buildAbsoluteUrl('/')}?q={search_term_string}`,
+    'query-input': 'required name=search_term_string',
+  },
+}));
+
+useStructuredData('home-item-list', () => {
+  if (!episodeSummaries.value.length) {
+    return null;
+  }
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'Список выпусков LockStock',
+    itemListElement: episodeSummaries.value.map((episode, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: `Выпуск ${episode.id}`,
+      url: buildAbsoluteUrl(`/episode/${episode.id}`),
+    })),
   };
 });
 

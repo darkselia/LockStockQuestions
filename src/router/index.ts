@@ -1,7 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
-import MainPage from '@/views/MainPage.vue';
-import EpisodePage from '@/views/EpisodePage.vue';
-import RulesPage from '@/views/RulesPage.vue';
+import { loadEpisodePage, loadMainPage, loadRulesPage } from './asyncViews';
 import { useQuestionsStore } from '@/stores/questions';
 
 const router = createRouter({
@@ -10,17 +8,17 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: MainPage,
+      component: loadMainPage,
     },
     {
       path: '/episode/:id',
       name: 'episode',
-      component: EpisodePage,
+      component: loadEpisodePage,
     },
     {
       path: '/rules',
       name: 'rules',
-      component: RulesPage,
+      component: loadRulesPage,
     },
   ],
   scrollBehavior(to, from, savedPosition) {

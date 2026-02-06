@@ -16,18 +16,26 @@ onMounted(() => {
 </script>
 
 <template>
-  <v-navigation-drawer v-if="!smAndUp" v-model="isMenuOpen">
+  <v-navigation-drawer v-if="!smAndUp" v-model="isMenuOpen" aria-label="Мобильное меню">
     <v-list-item title="Вопросы из шоу LockStock" />
     <v-divider class="mb-2" color="rgb(var(--v-theme-primary-darken-1))" />
     <v-list-item :to="{ path: '/', hash: '#episodes' }" link title="Все выпуски" />
     <v-list-item :to="{ name: 'rules' }" link title="Правила шоу" />
   </v-navigation-drawer>
 
-  <v-app-bar :class="{ 'app-bar': !smAndUp }" color="primary-lighten-1">
+  <v-app-bar :class="{ 'app-bar': !smAndUp }"
+             color="primary-lighten-1"
+             flat
+             tag="nav"
+             aria-label="Основная навигация">
     <v-app-bar-title>
       <div v-if="smAndUp" class="prepend">
-        <router-link class="title" to="/">
-          <img alt="logo" class="icon" src="/cards.webp" />
+        <router-link class="title" to="/" aria-label="На главную LockStock Questions">
+          <img alt="Карточки шоу LockStock"
+               class="icon"
+               src="/cards.webp"
+               loading="eager"
+               decoding="async" />
           <v-btn color="on-primary" text="Вопросы из шоу LockStock" variant="text" />
         </router-link>
       </div>
