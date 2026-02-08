@@ -33,12 +33,10 @@ const metadata = computed(() => {
 
 const heroImageUrl = buildAbsoluteUrl('/cards.webp');
 const seoCopy = {
-  title: `LockStock: ${metadata.value.totalEpisodes} выпусков и ${metadata.value.totalQuestions} вопросов в открытом каталоге`,
   description: `Просматривайте вопросы, подсказки и ответы из ${metadata.value.totalEpisodes} выпусков шоу LockStock — всего ${metadata.value.totalQuestions} записей с подробными комментариями.`,
 };
 
 useSeoMeta(() => ({
-  title: seoCopy.title,
   description: seoCopy.description,
   canonical: '/',
   image: heroImageUrl,

@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "prebuild": "node ./scripts/generate-sitemap.mjs",
     "dev": "vite",
     "build": "run-p type-check \"build-only {@}\" -- && npm run sitemap",
     "preview": "vite preview",

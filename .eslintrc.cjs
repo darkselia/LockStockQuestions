@@ -14,9 +14,9 @@ module.exports = {
   rules: {
 
     // ESLint
-    'array-bracket-newline': [ 'warn', { multiline: true, minItems: 4 } ],
+    'array-bracket-newline': [ 'warn', { multiline: true, minItems: 3 } ],
     'array-bracket-spacing': [ 'warn', 'always', { singleValue: false } ],
-    'array-element-newline': [ 'warn', { multiline: true, minItems: 4 } ],
+    'array-element-newline': [ 'warn', { multiline: true, minItems: 3 } ],
     'arrow-parens': [ 'warn', 'as-needed' ],
     'arrow-spacing': [ 'warn', { before: true, after: true } ],
     'block-spacing': [ 'warn', 'always' ],
