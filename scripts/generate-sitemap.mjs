@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { env } from 'node:process';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -14,9 +15,10 @@ const siteOrigin = resolveSiteOrigin();
 
 const staticRoutes = [ '/', '/rules' ];
 function resolveSiteOrigin() {
+  const envOrigin =  env.VITE_SITE_URL || env.SITE_URL || env.ORIGIN;
   const runtimeOrigin = typeof window !== 'undefined' && window.location?.origin ? window.location.origin : '';
-  const fallbackOrigin = 'https://darkselia.github.io/LockStockQuestions';
-  const rawOrigin =  runtimeOrigin || fallbackOrigin;
+  const fallbackOrigin = 'https://lock-stock-questions.vercel.app/';
+  const rawOrigin = envOrigin || runtimeOrigin || fallbackOrigin;
   return rawOrigin.replace(/\/$/, '');
 }
 function readEpisodeIds() {

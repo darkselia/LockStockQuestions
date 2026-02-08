@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://darkselia.github.io/LockStockQuestions/sitemap.xml
+Sitemap: https://darkselia.github.io/LockStockQuestions/sitemap_gitpages.xml
+Sitemap: https://lock-stock-questions.vercel.app/sitemap_vercel.xml
