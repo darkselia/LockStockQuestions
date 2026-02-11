@@ -2,55 +2,73 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
       <loc>https://lock-stock-questions.vercel.app/</loc>
-      <lastmod>2026-02-08T17:20:21.874Z</lastmod>
+      <lastmod>2026-02-11T11:33:41.218Z</lastmod>
       <changefreq>weekly</changefreq>
       <priority>1.0</priority>
     </url>
     <url>
+      <loc>https://lock-stock-questions.vercel.app/episode/1</loc>
+      <lastmod>2026-02-11T11:33:41.219Z</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+    <url>
+      <loc>https://lock-stock-questions.vercel.app/episode/2</loc>
+      <lastmod>2026-02-11T11:33:41.219Z</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+    <url>
       <loc>https://lock-stock-questions.vercel.app/episode/20</loc>
-      <lastmod>2026-02-08T17:20:21.874Z</lastmod>
+      <lastmod>2026-02-11T11:33:41.219Z</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
     </url>
     <url>
       <loc>https://lock-stock-questions.vercel.app/episode/21</loc>
-      <lastmod>2026-02-08T17:20:21.874Z</lastmod>
+      <lastmod>2026-02-11T11:33:41.219Z</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
     </url>
     <url>
       <loc>https://lock-stock-questions.vercel.app/episode/22</loc>
-      <lastmod>2026-02-08T17:20:21.874Z</lastmod>
+      <lastmod>2026-02-11T11:33:41.219Z</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
     </url>
     <url>
       <loc>https://lock-stock-questions.vercel.app/episode/23</loc>
-      <lastmod>2026-02-08T17:20:21.874Z</lastmod>
+      <lastmod>2026-02-11T11:33:41.219Z</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
     </url>
     <url>
       <loc>https://lock-stock-questions.vercel.app/episode/24</loc>
-      <lastmod>2026-02-08T17:20:21.874Z</lastmod>
+      <lastmod>2026-02-11T11:33:41.219Z</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
     </url>
     <url>
       <loc>https://lock-stock-questions.vercel.app/episode/26</loc>
-      <lastmod>2026-02-08T17:20:21.874Z</lastmod>
+      <lastmod>2026-02-11T11:33:41.219Z</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
     </url>
     <url>
       <loc>https://lock-stock-questions.vercel.app/episode/27</loc>
-      <lastmod>2026-02-08T17:20:21.874Z</lastmod>
+      <lastmod>2026-02-11T11:33:41.219Z</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+    <url>
+      <loc>https://lock-stock-questions.vercel.app/episode/28</loc>
+      <lastmod>2026-02-11T11:33:41.219Z</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
     </url>
     <url>
       <loc>https://lock-stock-questions.vercel.app/rules</loc>
-      <lastmod>2026-02-08T17:20:21.874Z</lastmod>
+      <lastmod>2026-02-11T11:33:41.219Z</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
     </url>
