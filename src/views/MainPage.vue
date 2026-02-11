@@ -33,7 +33,8 @@ const metadata = computed(() => {
 
 const heroImageUrl = buildAbsoluteUrl('/cards.webp');
 const seoCopy = {
-  description: `Просматривайте вопросы, подсказки и ответы из ${metadata.value.totalEpisodes} выпусков шоу LockStock — всего ${metadata.value.totalQuestions} записей с подробными комментариями.`,
+  description:
+    `Просматривайте вопросы, подсказки и ответы из ${metadata.value.totalEpisodes} выпусков шоу Лок Сток.`,
 };
 
 useSeoMeta(() => ({
@@ -45,7 +46,7 @@ useSeoMeta(() => ({
 useStructuredData('home-website', () => ({
   '@context': 'https://schema.org',
   '@type': 'WebSite',
-  name: 'LockStock Questions',
+  name: 'Вопросы из шоу Лок Сток',
   url: buildAbsoluteUrl('/'),
   description: seoCopy.description,
   image: heroImageUrl,
@@ -63,7 +64,7 @@ useStructuredData('home-item-list', () => {
   return {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
-    name: 'Список выпусков LockStock',
+    name: 'Список выпусков Лок Сток',
     itemListElement: episodeSummaries.value.map((episode, index) => ({
       '@type': 'ListItem',
       position: index + 1,
@@ -121,7 +122,7 @@ function handleRandom(type: 'episode' | 'question') {
     <div class="hero">
       <div class="hero-text">
         <p class="eyebrow">LockStock. Ставка на знания</p>
-        <h1>Все вопросы шоу в одном каталоге</h1>
+        <h1>Все вопросы шоу Лок Сток в одном каталоге</h1>
         <p>Этот проект создан исключительно в образовательных и некоммерческих целях
           и не связан с создателями шоу.</p>
         <p>Всего доступно:</p>
@@ -133,7 +134,7 @@ function handleRandom(type: 'episode' | 'question') {
       <div class="hero-card">
         <h3>Что внутри</h3>
         <ul>
-          <li>На сайте собраны вопросы, подсказки и ответы из выпусков шоу LockStock.</li>
+          <li>На сайте собраны вопросы, подсказки и ответы из выпусков шоу Лок Сток.</li>
           <li>Номера эпизодов ведут на страницы с полным набором вопросов выпуска.</li>
           <li>Каждый вопрос содержит подсказки, ответы и пояснения к ответам.</li>
           <li>Кнопки "Случайный выпуск" и "Случайный вопрос" ведут на случайные страницы</li>

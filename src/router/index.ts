@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
-import { loadEpisodePage, loadMainPage, loadRulesPage } from './asyncViews';
+import { loadEpisodePage, loadRulesPage } from './asyncViews';
 import { useQuestionsStore } from '@/stores/questions';
+import MainPage from '@/views/MainPage.vue'
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
@@ -8,7 +9,7 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: loadMainPage,
+      component: MainPage,
     },
     {
       path: '/episode/:id',

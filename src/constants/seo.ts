@@ -7,9 +7,10 @@ function resolveSiteOrigin() {
 }
 
 export const SITE_ORIGIN = resolveSiteOrigin();
-export const SITE_NAME = 'LockStock Questions';
-export const DEFAULT_TITLE = 'LockStock Questions — каталог вопросов шоу Локсток';
-export const DEFAULT_DESCRIPTION = 'Неофициальный каталог вопросов, подсказок и ответов из шоу «LockStock. Ставка на знания». Вопросы собраны по выпускам для удобного поиска.';
+export const SITE_NAME = 'Лок Сток Вопросы';
+export const DEFAULT_TITLE = 'Каталог вопросов из шоу «Лок Сток. Ставка на знания»';
+export const DEFAULT_DESCRIPTION = 'Неофициальный каталог вопросов и ответов из шоу «Лок Сток. Ставка на знания».' +
+  ' Вопросы собраны по выпускам для удобного поиска.';
 export const DEFAULT_IMAGE_PATH = '/cards.webp';
 
 export function buildAbsoluteUrl(path = '/') {
