@@ -120,6 +120,12 @@ onMounted(() => {
 </script>
 
 <template>
+    <v-alert closable type="info" border="start" elevation="2" class="episode-alert"
+             icon="mdi-information">
+      Если вы заметили ошибку в вопросе, пожалуйста, напишите на почту снизу страницы
+      с указанием номера выпуска, номера вопроса и описанием ошибки.
+    </v-alert>
+
   <section class="page-shell">
     <header class="page-header">
       <p class="eyebrow">Выпуск</p>
@@ -261,6 +267,22 @@ onMounted(() => {
 .answer-card {
   display: grid;
   gap: 14px;
+}
+
+.episode-alert{
+  position: fixed;
+  bottom: 10px;
+  right: 12px;
+  z-index: 2000;
+  width: min(600px, 90vw);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.alert-email {
+  color: inherit;
+  font-weight: 600;
+  margin: 0 4px;
+  text-decoration: underline;
 }
 
 
