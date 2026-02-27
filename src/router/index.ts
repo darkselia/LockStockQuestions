@@ -1,10 +1,10 @@
-import { createRouter, createWebHashHistory } from 'vue-router';
+import { createRouter, createWebHistory } from 'vue-router';
 import { loadEpisodePage, loadRulesPage } from './asyncViews';
 import { useQuestionsStore } from '@/stores/questions';
-import MainPage from '@/views/MainPage.vue'
+import MainPage from '@/views/MainPage.vue';
 
 const router = createRouter({
-  history: createWebHashHistory(import.meta.env.BASE_URL),
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',

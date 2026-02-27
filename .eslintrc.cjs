@@ -5,22 +5,33 @@ module.exports = {
   extends: [
     'plugin:vue/vue3-essential',
     'eslint:recommended',
-    '@vue/eslint-config-typescript',
-    '@vue/eslint-config-prettier/skip-formatting',
+    'plugin:vue/vue3-recommended',
+    'plugin:@typescript-eslint/recommended',
   ],
+  parser: 'vue-eslint-parser',
   parserOptions: {
+    parser: '@typescript-eslint/parser',
     ecmaVersion: 'latest',
+    sourceType: 'module',
   },
   rules: {
 
     // ESLint
     'array-bracket-newline': [ 'warn', { multiline: true, minItems: 3 } ],
-    'array-bracket-spacing': [ 'warn', 'always', { singleValue: false } ],
+    'array-bracket-spacing': [
+      'warn',
+      'always',
+      { singleValue: false },
+    ],
     'array-element-newline': [ 'warn', { multiline: true, minItems: 3 } ],
     'arrow-parens': [ 'warn', 'as-needed' ],
     'arrow-spacing': [ 'warn', { before: true, after: true } ],
     'block-spacing': [ 'warn', 'always' ],
-    'brace-style': [ 'warn', '1tbs', { allowSingleLine: true } ],
+    'brace-style': [
+      'warn',
+      '1tbs',
+      { allowSingleLine: true },
+    ],
     'comma-dangle': [ 'warn', 'always-multiline' ],
     'comma-spacing': [ 'warn', { before: false, after: true } ],
     'comma-style': [ 'warn', 'last' ],
@@ -46,7 +57,11 @@ module.exports = {
         afterLineComment: false,
       },
     ],
-    'lines-between-class-members': [ 'warn', 'always', { exceptAfterSingleLine: true } ],
+    'lines-between-class-members': [
+      'warn',
+      'always',
+      { exceptAfterSingleLine: true },
+    ],
     'max-len': [ 'warn', { code: 140 } ],
     'max-statements-per-line': [ 'warn', { max: 1 } ],
     'multiline-comment-style': [ 'warn', 'starred-block' ],
@@ -54,7 +69,11 @@ module.exports = {
     'new-parens': [ 'warn', 'always' ],
     'newline-per-chained-call': [ 'warn', { ignoreChainWithDepth: 2 } ],
     'no-confusing-arrow': [ 'warn', { allowParens: true, onlyOneSimpleParam: true } ],
-    'no-extra-parens': [ 'warn', 'all', { nestedBinaryExpressions: false, ignoreJSX: 'multi-line' } ],
+    'no-extra-parens': [
+      'warn',
+      'all',
+      { nestedBinaryExpressions: false, ignoreJSX: 'multi-line' },
+    ],
     'no-extra-semi': ['warn'],
     'no-floating-decimal': ['off'],
     'no-mixed-operators': ['warn'],
@@ -67,10 +86,18 @@ module.exports = {
     'object-curly-spacing': [ 'warn', 'always' ],
     'object-property-newline': [ 'warn', { allowAllPropertiesOnSameLine: true } ],
     'one-var-declaration-per-line': [ 'warn', 'initializations' ],
-    'operator-linebreak': [ 'warn', 'after', { overrides: { '?': 'before', ':': 'before' } } ],
+    'operator-linebreak': [
+      'warn',
+      'after',
+      { overrides: { '?': 'before', ':': 'before' } },
+    ],
     'padded-blocks': [ 'warn', 'never' ],
     'quote-props': [ 'warn', 'as-needed' ],
-    quotes: [ 'warn', 'single', { avoidEscape: true } ],
+    quotes: [
+      'warn',
+      'single',
+      { avoidEscape: true },
+    ],
     'rest-spread-spacing': [ 'warn', 'never' ],
     semi: [ 'warn', 'always' ],
     'semi-spacing': [ 'warn', { before: false, after: true } ],
@@ -91,7 +118,11 @@ module.exports = {
     'vue/valid-v-slot': 'off',
     'vue/no-multiple-template-root': 'off',
     'vue/max-attributes-per-line': [ 'warn', { singleline: { max: 4 }, multiline: { max: 1 } } ],
-    'vue/html-indent': [ 'error', 2, { attribute: 1, baseIndent: 1, closeBracket: 0, alignAttributesVertically: true } ],
+    'vue/html-indent': [
+      'error',
+      2,
+      { attribute: 1, baseIndent: 1, closeBracket: 0, alignAttributesVertically: true },
+    ],
     'vue/attributes-order': [
       'warn',
       {
