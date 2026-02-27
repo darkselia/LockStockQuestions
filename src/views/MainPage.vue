@@ -5,6 +5,7 @@ import { useSeoMeta } from '@/composables/useSeoMeta';
 import { useStructuredData } from '@/composables/useStructuredData';
 import { buildAbsoluteUrl } from '@/constants/seo';
 import { useQuestionsStore } from '@/stores/questions';
+import Card from '@/components/InfoCard.vue';
 
 const router = useRouter();
 const questionsStore = useQuestionsStore();
@@ -93,7 +94,7 @@ function handleRandom(type: 'episode' | 'question') {
     void router.push({
       name: 'episode',
       params: { id: choice?.id },
-      query: { questions: String(questionChoice?['question-id']:'') },
+      query: { questions: String(questionChoice ? ['question-id'] : '') },
     });
     return;
   }
@@ -111,36 +112,42 @@ function handleRandom(type: 'episode' | 'question') {
         prominent
       >
         Вопросы, представленные на этом сайте, взяты из шоу
-        <a href="https://vkvideo.ru/playlist/-214484275_24"
-           target="_blank"
-           rel="noopener noreferrer"
+        <a
+          href="https://vkvideo.ru/playlist/-214484275_24"
+          target="_blank"
+          rel="noopener noreferrer"
         >'LockStock Ставка на знания'</a>.
         Все материалы принадлежат авторам шоу и используются здесь без коммерческой выгоды.
       </v-alert>
     </section>
 
-    <div class="hero">
-      <div class="hero-text">
-        <p class="eyebrow">LockStock. Ставка на знания</p>
-        <h1>Все вопросы шоу Лок Сток в одном каталоге</h1>
-        <p>Этот проект создан исключительно в образовательных и некоммерческих целях
-          и не связан с создателями шоу.</p>
-        <p>Всего доступно:</p>
-        <div class="hero-stats">
-          <span>{{ metadata.totalEpisodes }} выпусков</span>
-          <span>{{ metadata.totalQuestions }} вопросов</span>
+    <Card
+      eyebrow="LockStock. Ставка на знания"
+      title="Все вопросы шоу Лок Сток в одном каталоге"
+      description="Этот проект создан исключительно в образовательных и некоммерческих целях
+          и не связан с создателями шоу."
+    >
+      <template #content>
+        <p class="card-lead">
+          Всего доступно:
+        </p>
+        <div class="card-stats">
+          <span class="card-stats-item">{{ metadata.totalEpisodes }} выпусков</span>
+          <span class="card-stats-item">{{ metadata.totalQuestions }} вопросов</span>
         </div>
-      </div>
-      <div class="hero-card">
-        <h3>Что внутри</h3>
-        <ul>
+      </template>
+      <div class="card-side-panel">
+        <h3 class="card-side-title">
+          Что внутри
+        </h3>
+        <ul class="card-side-list">
           <li>На сайте собраны вопросы, подсказки и ответы из выпусков шоу Лок Сток.</li>
           <li>Номера эпизодов ведут на страницы с полным набором вопросов выпуска.</li>
           <li>Каждый вопрос содержит подсказки, ответы и пояснения к ответам.</li>
           <li>Кнопки "Случайный выпуск" и "Случайный вопрос" ведут на случайные страницы</li>
         </ul>
       </div>
-    </div>
+    </Card>
 
     <section class="content-wrapper">
       <section id="episodes" class="episodes-block">
@@ -185,47 +192,12 @@ function handleRandom(type: 'episode' | 'question') {
   padding-bottom: 64px;
 }
 
-.hero {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 28px;
-  align-items: center;
-  background: linear-gradient(
-    135deg,
-    rgb(var(--v-theme-primary-lighten-1)) 0%,
-    rgb(var(--v-theme-primary-darken-1)) 100%
-  );
-  padding: clamp(25px, 2vw + 20px, 60px);
-  box-shadow: 0 20px 50px rgba(var(--v-theme-primary-darken-1), 0.25);
-  border-radius: 24px;
-  margin: 0 20px 30px;
-  border-bottom: 10px solid rgb(var(--v-theme-primary-darken-1));
-  border-right: 10px solid rgb(var(--v-theme-primary-darken-1));
-}
-
-.hero-text h1 {
-  font-size: 2.6rem;
-  margin: 12px 0 20px;
-  line-height: 1.2;
-  color: rgb(var(--v-theme-on-primary));
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
-}
-
-.hero-text p {
+.card-lead {
   color: rgba(var(--v-theme-on-primary), 0.9);
-  margin-bottom: 18px;
-  max-width: 560px;
+  margin: 0;
 }
 
-.eyebrow {
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: rgba(var(--v-theme-on-primary), 0.85);
-}
-
-.hero-stats {
+.card-stats {
   display: flex;
   gap: 20px;
   font-weight: 600;
@@ -233,7 +205,7 @@ function handleRandom(type: 'episode' | 'question') {
   flex-wrap: wrap;
 }
 
-.hero-stats span {
+.card-stats-item {
   background: rgba(var(--v-theme-on-primary), 0.15);
   padding: 10px 18px;
   border-radius: var(--v-border-radius);
@@ -241,7 +213,7 @@ function handleRandom(type: 'episode' | 'question') {
   border: 1px solid rgba(var(--v-theme-on-primary), 0.25);
 }
 
-.hero-card {
+.card-side-panel {
   background: rgb(var(--v-theme-surface));
   border-radius: 20px;
   padding: 28px;
@@ -254,20 +226,18 @@ function handleRandom(type: 'episode' | 'question') {
   height: min-content;
 }
 
-.hero-card h3 {
-  margin-top: 0;
-  margin-bottom: 16px;
+.card-side-title {
+  margin: 0 0 16px;
   color: rgb(var(--v-theme-primary-darken-1));
   font-size: 1.4rem;
 }
 
-.hero-card ul {
+.card-side-list {
   padding-left: 20px;
   color: rgb(var(--v-theme-on-surface));
-}
-
-.hero-card li {
-  margin-bottom: 8px;
+  margin: 0;
+  display: grid;
+  gap: 8px;
 }
 
 .content-wrapper {
@@ -365,13 +335,6 @@ function handleRandom(type: 'episode' | 'question') {
 }
 
 @media (max-width: 720px) {
-  .hero {
-    padding: 28px;
-  }
-
-  .hero-text h1 {
-    font-size: 2rem;
-  }
 
   .episodes-block {
     padding: 24px;
