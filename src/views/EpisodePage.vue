@@ -120,17 +120,27 @@ onMounted(() => {
 </script>
 
 <template>
-    <v-alert closable type="info" border="start" elevation="2" class="episode-alert"
-             icon="mdi-information">
-      Если вы заметили ошибку в вопросе, пожалуйста, напишите на почту снизу страницы
-      с указанием номера выпуска, номера вопроса и описанием ошибки.
-    </v-alert>
+  <v-alert
+    closable
+    type="info"
+    border="start"
+    elevation="2"
+    class="episode-alert"
+    icon="mdi-information"
+  >
+    Если вы заметили ошибку в вопросе или хотите добавить свой, пожалуйста, напишите на почту внизу страницы
+    с указанием номера выпуска, номера вопроса и описанием ошибки.
+  </v-alert>
 
   <section class="page-shell">
     <header class="page-header">
-      <p class="eyebrow">Выпуск</p>
+      <p class="eyebrow">
+        Выпуск
+      </p>
       <h1>№ {{ episodeId }}</h1>
-      <p class="subtitle">Вопросы, подсказки и ответы из шоу LockStock</p>
+      <p class="subtitle">
+        Вопросы, подсказки и ответы из шоу LockStock
+      </p>
     </header>
 
     <div v-if="!questions.length" class="empty-state">
@@ -163,36 +173,36 @@ onMounted(() => {
               v-if="hasText(question.hint1)"
               :text="String(question.hint1 ?? '')"
               :revealed="isRevealed(String(question['question-id']), 'hint1')"
-              :onReveal="getRevealHandler(String(question['question-id']), 'hint1')"
+              :on-reveal="getRevealHandler(String(question['question-id']), 'hint1')"
               label="Подсказка 1"
-              skeletonType="sentences"
+              skeleton-type="sentences"
             />
 
             <DetailItem
               v-if="hasText(question.hint2)"
               :text="String(question.hint2 ?? '')"
               :revealed="isRevealed(String(question['question-id']), 'hint2')"
-              :onReveal="getRevealHandler(String(question['question-id']), 'hint2')"
+              :on-reveal="getRevealHandler(String(question['question-id']), 'hint2')"
               label="Подсказка 2"
-              skeletonType="sentences"
+              skeleton-type="sentences"
             />
 
             <DetailItem
               v-if="hasText(question.answer)"
               :text="String(question.answer ?? '')"
               :revealed="isRevealed(String(question['question-id']), 'answer')"
-              :onReveal="getRevealHandler(String(question['question-id']), 'answer')"
+              :on-reveal="getRevealHandler(String(question['question-id']), 'answer')"
               label="Ответ"
-              skeletonType="list-item"
+              skeleton-type="list-item"
             />
 
             <DetailItem
               v-if="hasText(question['answer-comm'])"
               :text="String(question['answer-comm'] ?? '')"
               :revealed="isRevealed(String(question['question-id']), 'answer')"
-              :onReveal="getRevealHandler(String(question['question-id']), 'answer')"
+              :on-reveal="getRevealHandler(String(question['question-id']), 'answer')"
               label="Комментарий к ответу"
-              skeletonType="paragraph"
+              skeleton-type="paragraph"
             />
           </div>
         </v-expansion-panel-text>
@@ -277,14 +287,6 @@ onMounted(() => {
   width: min(600px, 90vw);
   transition: opacity 0.18s ease, transform 0.18s ease;
 }
-
-.alert-email {
-  color: inherit;
-  font-weight: 600;
-  margin: 0 4px;
-  text-decoration: underline;
-}
-
 
 @media (max-width: 640px) {
   .panel-title {

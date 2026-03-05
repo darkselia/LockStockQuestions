@@ -149,7 +149,9 @@ function handleTocSelect(id: string) {
 
     <main class="rules-page-main">
       <header class="rules-header">
-        <h1 class="rules-title">«Лок Сток»</h1>
+        <h1 class="rules-title">
+          «Лок Сток»
+        </h1>
         <p class="rules-subtitle">
           — интеллектуальное шоу, в котором логика, интуиция и блеф важны не меньше, чем точный ответ.
         </p>
@@ -162,7 +164,9 @@ function handleTocSelect(id: string) {
           :id="block.id"
           class="rules-card"
         >
-          <h2 class="rules-section-title">{{ block.title }}</h2>
+          <h2 class="rules-section-title">
+            {{ block.title }}
+          </h2>
 
           <div v-if="block.paragraphs" class="rules-block">
             <p v-for="paragraph in block.paragraphs" :key="paragraph" class="rules-paragraph">
@@ -178,7 +182,9 @@ function handleTocSelect(id: string) {
 
           <div v-if="block.subsections" class="rules-subsections">
             <div v-for="subsection in block.subsections" :key="subsection.title" class="rules-subsection">
-              <h3 class="rules-subsection-title">{{ subsection.title }}</h3>
+              <h3 class="rules-subsection-title">
+                {{ subsection.title }}
+              </h3>
 
               <div v-if="subsection.paragraphs" class="rules-block">
                 <p v-for="paragraph in subsection.paragraphs" :key="paragraph" class="rules-paragraph">
@@ -194,8 +200,12 @@ function handleTocSelect(id: string) {
 
               <div v-if="subsection.steps" class="rules-steps">
                 <div v-for="step in subsection.steps" :key="step.title" class="rules-step">
-                  <div class="rules-step-title">{{ step.title }}</div>
-                  <div class="rules-step-text">{{ step.text }}</div>
+                  <div class="rules-step-title">
+                    {{ step.title }}
+                  </div>
+                  <div class="rules-step-text">
+                    {{ step.text }}
+                  </div>
                 </div>
               </div>
             </div>

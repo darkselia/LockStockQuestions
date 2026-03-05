@@ -23,7 +23,9 @@ function handleLinkClick(id: string, event: MouseEvent) {
 
 <template>
   <nav class="toc" aria-label="Оглавление">
-    <div class="toc-title">Оглавление</div>
+    <div class="toc-title">
+      Оглавление
+    </div>
     <div class="toc-list">
       <a
         v-for="section in sections"

@@ -23,23 +23,29 @@ onMounted(() => {
     <v-list-item :to="{ name: 'rules' }" link title="Правила шоу" />
   </v-navigation-drawer>
 
-  <v-app-bar :class="{ 'app-bar': !smAndUp }"
-             color="primary-lighten-1"
-             flat
-             tag="nav"
-             aria-label="Основная навигация">
+  <v-app-bar
+    :class="{ 'app-bar': !smAndUp }"
+    color="primary-lighten-1"
+    flat
+    tag="nav"
+    aria-label="Основная навигация"
+  >
     <v-app-bar-title>
       <div v-if="smAndUp" class="prepend">
         <router-link class="title" to="/" aria-label="На главную LockStock Questions">
-          <img alt="Карточки шоу LockStock"
-               class="icon"
-               src="/cards.webp"
-               loading="eager"
-               decoding="async" />
+          <img
+            alt="Карточки шоу LockStock"
+            class="icon"
+            src="/cards.webp"
+            loading="eager"
+            decoding="async"
+          />
           <v-btn color="on-primary" text="Вопросы из шоу LockStock" variant="text" />
         </router-link>
       </div>
-      <div v-else class="text-center mr-4 mobile-title">Вопросы из шоу LockStock</div>
+      <div v-else class="text-center mr-4 mobile-title">
+        Вопросы из шоу LockStock
+      </div>
     </v-app-bar-title>
 
     <template v-if="!smAndUp" #prepend>
@@ -48,8 +54,12 @@ onMounted(() => {
 
     <template #append>
       <div v-if="smAndUp" class="container">
-        <v-btn :to="{ path: '/', hash: '#episodes' }" variant="text" color="on-primary">Все выпуски</v-btn>
-        <v-btn :to="{ name: 'rules' }" variant="text" color="on-primary">Правила шоу</v-btn>
+        <v-btn :to="{ path: '/', hash: '#episodes' }" variant="text" color="on-primary">
+          Все выпуски
+        </v-btn>
+        <v-btn :to="{ name: 'rules' }" variant="text" color="on-primary">
+          Правила шоу
+        </v-btn>
       </div>
     </template>
   </v-app-bar>
@@ -63,6 +73,7 @@ onMounted(() => {
   align-items: center;
   gap: 10px;
   transition: opacity 0.2s ease;
+  height: 100%;
 }
 
 .title:hover {
@@ -100,16 +111,13 @@ onMounted(() => {
 }
 
 .icon {
-  height: 50px;
+  transform: scale(0.85);
+  height: 55px;
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
   transition: transform 0.2s ease;
 }
 
 .icon:hover {
-  transform: scale(1.05);
-}
-
-:deep(.v-btn) {
-  font-weight: 600;
+  transform: scale(1.00);
 }
 </style>

@@ -70,16 +70,4 @@ defineProps<{
   color: rgb(var(--v-theme-on-surface));
   line-height: 1.5;
 }
-
-.sentences{
-  margin: 16px 16px;
-}
-
-.list-item {
-  margin: 10px 16px;
-}
-
-.paragraph {
-  margin: 8px 16px;
-}
 </style>

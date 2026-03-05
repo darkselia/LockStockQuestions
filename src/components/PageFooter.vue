@@ -1,21 +1,20 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
-const email = 'mailto:dasha2510929@yandex.ru'
-const telegram = 'https://t.me/darkselia'
-const github = 'https://github.com/darkselia'
+const email = 'mailto:dasha2510929@yandex.ru';
+const telegram = 'https://t.me/darkselia';
+const github = 'https://github.com/darkselia';
 const copiedEmail = ref(false);
 
 function copyEmail() {
-  // Попытка через современный API
   if (typeof navigator !== 'undefined' && navigator.clipboard && navigator.clipboard.writeText) {
     navigator.clipboard.writeText(email).then(() => {
       copiedEmail.value = true;
-      setTimeout(() => (copiedEmail.value = false), 1800);
-    }).catch(() => {
-      // fallback
-      fallbackCopyTextToClipboard(email);
-    });
+      setTimeout(() => copiedEmail.value = false, 1800);
+    })
+      .catch(() => {
+        fallbackCopyTextToClipboard(email);
+      });
   } else {
     fallbackCopyTextToClipboard(email);
   }
@@ -33,12 +32,10 @@ function fallbackCopyTextToClipboard(text: string) {
     document.body.removeChild(textarea);
     if (successful) {
       copiedEmail.value = true;
-      setTimeout(() => (copiedEmail.value = false), 1800);
+      setTimeout(() => copiedEmail.value = false, 1800);
     }
   } catch (e) {
-    // окончательный fallback — ничего не делаем
-    // можно логировать в консоль
-    // console.warn('Copy failed', e);
+    console.warn('Copy failed', e);
   }
 }
 </script>
@@ -58,20 +55,38 @@ function fallbackCopyTextToClipboard(text: string) {
         <span class="footer-title">Контакты разработчика</span>
         <div class="footer-contacts">
           <div class="contact-item email-wrapper">
-            <v-btn class="footer-contact" aria-label="Скопировать email" @click="copyEmail" icon="mdi-email"
-                   size="small"/>
+            <v-btn
+              class="footer-contact"
+              aria-label="Скопировать email"
+              icon="mdi-email"
+              size="small"
+              @click="copyEmail"
+            />
             <span v-if="copiedEmail" class="copy-notice" role="status" aria-live="polite">Скопировано</span>
           </div>
 
-          <v-btn :href="telegram" target="_blank" rel="noopener" class="footer-contact" aria-label="Telegram"
-                 icon="mdi-send"  size="small"/>
+          <v-btn
+            :href="telegram"
+            target="_blank"
+            rel="noopener"
+            class="footer-contact"
+            aria-label="Telegram"
+            icon="mdi-send"
+            size="small"
+          />
 
-          <v-btn :href="github" target="_blank" rel="noopener" class="footer-contact" aria-label="GitHub"
-                 icon="mdi-github" size="small"/>
+          <v-btn
+            :href="github"
+            target="_blank"
+            rel="noopener"
+            class="footer-contact"
+            aria-label="GitHub"
+            icon="mdi-github"
+            size="small"
+          />
           <span class="footer-text">2026 Darkselia</span>
         </div>
       </div>
-
     </div>
   </footer>
 </template>
@@ -112,17 +127,6 @@ function fallbackCopyTextToClipboard(text: string) {
 
 .footer-text {
   color: rgba(var(--v-theme-on-primary), 0.85);
-}
-
-.footer-link {
-  color: rgb(var(--v-theme-on-primary));
-  text-decoration: none;
-  font-weight: 500;
-}
-
-.footer-link:hover {
-  color: rgb(var(--v-theme-on-primary));
-  text-decoration: underline;
 }
 
 .footer-contacts {
