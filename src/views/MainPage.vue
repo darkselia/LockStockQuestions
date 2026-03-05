@@ -157,10 +157,22 @@ function handleRandom(type: 'episode' | 'question') {
             <p>Выберите номер, чтобы открыть вопросы конкретного выпуска шоу. </p>
           </div>
           <div class="random-buttons">
-            <v-btn color="primary" variant="tonal" density="comfortable" @click="handleRandom('episode')">
+            <v-btn
+              prepend-icon="mdi-dice-multiple"
+              color="primary"
+              variant="flat"
+              density="comfortable"
+              @click="handleRandom('episode')"
+            >
               Случайный выпуск
             </v-btn>
-            <v-btn color="primary" variant="tonal" density="comfortable" @click="handleRandom('question')">
+            <v-btn
+              prepend-icon="mdi-help-circle-outline"
+              color="primary-darken-1"
+              variant="flat"
+              density="comfortable"
+              @click="handleRandom('question')"
+            >
               Случайный вопрос
             </v-btn>
           </div>
@@ -216,20 +228,14 @@ function handleRandom(type: 'episode' | 'question') {
 .card-side-panel {
   background: rgb(var(--v-theme-surface));
   border-radius: 20px;
-  padding: 28px;
-  border-bottom: 4px solid rgb(var(--v-theme-surface-variant));
-  border-right: 4px solid rgb(var(--v-theme-surface-variant));
-  color: rgb(var(--v-theme-on-surface));
-  backdrop-filter: blur(8px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-  width: 100%;
-  height: min-content;
+  padding: 24px;
+  border: 1px solid rgba(var(--v-theme-on-surface), 0.08);
 }
 
 .card-side-title {
   margin: 0 0 16px;
   color: rgb(var(--v-theme-primary-darken-1));
-  font-size: 1.4rem;
+  font-size: 20px;
 }
 
 .card-side-list {
@@ -241,7 +247,7 @@ function handleRandom(type: 'episode' | 'question') {
 }
 
 .content-wrapper {
-  width: min(100%, 1200px);
+  width: min(100%, 1000px);
   margin: 0 auto;
   padding: 0 20px;
   display: flex;
@@ -278,14 +284,21 @@ function handleRandom(type: 'episode' | 'question') {
 }
 
 .episodes-header h2 {
-  margin: 0;
-  font-size: 2rem;
+  margin: 0 0 8px 0;
+  font-size: 32px;
+  font-weight: 700;
   color: rgb(var(--v-theme-on-background));
 }
 
 .episodes-header p {
-  margin: 6px 0 0;
+  margin: 0;
   color: rgb(var(--v-theme-primary-lighten-1));
+}
+
+.random-buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
 .episode-grid {
@@ -317,21 +330,15 @@ function handleRandom(type: 'episode' | 'question') {
 }
 
 .episode-number {
-  font-size: 1.5rem;
-  font-weight: 700;
   color: rgb(var(--v-theme-primary-darken-1));
+  font-size: 28px;
+  font-weight: 800;
 }
 
 .episode-count {
   font-size: 0.9rem;
   color: rgb(var(--v-theme-on-surface));
   font-weight: 500;
-}
-
-.random-buttons {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
 }
 
 @media (max-width: 720px) {
