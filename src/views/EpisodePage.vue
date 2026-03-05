@@ -4,6 +4,8 @@ import { useRoute, useRouter } from 'vue-router';
 import type { QuestionRecord } from '@/types/types';
 import { useQuestionsStore } from '@/stores/questions';
 import DetailItem from '@/components/DetailItem.vue';
+import { useSeoMeta } from '@/composables/useSeoMeta.ts';
+import { buildAbsoluteUrl } from '@/constants/seo.ts';
 
 const route = useRoute();
 const router = useRouter();
@@ -12,6 +14,12 @@ const questionsStore = useQuestionsStore();
 const episodeId = computed(() => String(route.params.id ?? ''));
 const questions = computed<QuestionRecord[]>(() => questionsStore.getByVideo(episodeId.value) ?? []);
 const allowedIds = new Set(questions.value.map(q => String(q['question-id'])));
+
+useSeoMeta(() => ({
+  title: `Выпуск №${episodeId.value} - Вопросы и ответы`,
+  description: `Список вопросов, подсказок и ответов из выпуска №${episodeId.value} шоу LockStock.`,
+  canonical: buildAbsoluteUrl(`/episode/${episodeId.value}`),
+}));
 
 
 const openPanels = ref<string[]>([]);
@@ -124,9 +132,9 @@ onMounted(() => {
     closable
     type="info"
     border="start"
-    elevation="2"
     class="episode-alert"
     icon="mdi-information"
+    variant="tonal"
   >
     Если вы заметили ошибку в вопросе или хотите добавить свой, пожалуйста, напишите на почту внизу страницы
     с указанием номера выпуска, номера вопроса и описанием ошибки.
@@ -152,6 +160,7 @@ onMounted(() => {
       v-model="panelModel"
       multiple
       variant="popout"
+      class="custom-panels"
     >
       <v-expansion-panel
         v-for="(question, idx) in questions"
@@ -162,9 +171,9 @@ onMounted(() => {
       >
         <v-expansion-panel-title>
           <div class="panel-title">
-            <span class="panel-index">{{ idx + 1 }}</span>
+            <span class="panel-index">#{{ idx + 1 }}</span>
             <span class="panel-question">{{ question.question }}</span>
-            <span>{{ question['question-id'] }}</span>
+            <span style="font-size: 10px">ID{{ question['question-id'] }}</span>
           </div>
         </v-expansion-panel-title>
         <v-expansion-panel-text>
@@ -228,7 +237,7 @@ onMounted(() => {
 }
 
 .page-header h1 {
-  font-size: 2.4rem;
+  font-size: 48px;
   color: rgb(var(--v-theme-primary-lighten-1));
 }
 
@@ -249,7 +258,7 @@ onMounted(() => {
 
 .panel-title {
   display: grid;
-  grid-template-columns: auto 1fr 10px;
+  grid-template-columns: auto 1fr 20px;
   gap: 12px;
   align-items: center;
   width: 100%;
@@ -260,18 +269,20 @@ onMounted(() => {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 42px;
-  height: 42px;
-  border-radius: 12px;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
   background: rgb(var(--v-theme-secondary-lighten-1));
-  color: rgb(var(--v-theme-on-secondary));
-  font-weight: 1000;
+  color: rgb(var(--v-theme-primary));
+  font-weight: 800;
+  margin-top: -2px;
 }
 
 .panel-question {
   color: rgb(var(--v-theme-on-surface));
   font-weight: 600;
   line-height: 1.4;
+  padding-top: 4px;
 }
 
 .answer-card {
@@ -281,21 +292,42 @@ onMounted(() => {
 
 .episode-alert{
   position: fixed;
-  bottom: 10px;
-  right: 12px;
-  z-index: 2000;
-  width: min(600px, 90vw);
-  transition: opacity 0.18s ease, transform 0.18s ease;
+  bottom: 24px;
+  right: 24px;
+  z-index: 100;
+  max-width: 400px;
+  width: 100%;
+  font-size: 13px;
+  line-height: 1.5;
+  border-radius: 12px;
+  background-color: rgba(var(--v-theme-surface), 0.95) !important;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.15);
 }
+
 
 @media (max-width: 640px) {
   .panel-title {
-    grid-template-columns: auto 1fr;
+    grid-template-columns: auto 1fr 20px;
     gap: 10px;
   }
 
+  .panel-index {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+  }
+
   .panel-question {
-    font-size: 0.95rem;
+    font-size: 0.90rem;
+  }
+
+  .episode-alert {
+    bottom: 16px;
+    right: 16px;
+    left: 16px;
+    width: auto;
+    max-width: none;
   }
 }
 </style>

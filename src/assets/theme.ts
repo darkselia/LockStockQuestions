@@ -50,6 +50,7 @@ export const myCustomGoldTheme: ThemeDefinition = {
     'primary-lighten-1': '#ffbc1a',
     'primary-darken-1': '#6c500b',
     'on-primary': '#050503',
+    'on-primary-darken-1': '#000000',
     secondary: '#050503',
     'secondary-lighten-1': '#222215',
     'secondary-darken-1': '#000000',
