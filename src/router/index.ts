@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import { loadEpisodePage, loadRulesPage } from './asyncViews';
+import { loadEpisodePage, loadRulesPage, loadNotFoundPage } from './asyncViews';
 import { useQuestionsStore } from '@/stores/questions';
 import MainPage from '@/views/MainPage.vue';
 
@@ -20,6 +20,11 @@ const router = createRouter({
       path: '/rules',
       name: 'rules',
       component: loadRulesPage,
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'not-found',
+      component: loadNotFoundPage,
     },
   ],
   scrollBehavior(to, from, savedPosition) {
