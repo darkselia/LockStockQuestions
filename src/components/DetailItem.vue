@@ -68,6 +68,15 @@ defineProps<{
 
 .detail-value {
   color: rgb(var(--v-theme-on-surface));
+  line-height: 1.37;
+  margin: 10px 16px;
+}
+
+.list-item {
   line-height: 1.5;
+}
+
+.paragraph{
+  line-height: 1.33;
 }
 </style>

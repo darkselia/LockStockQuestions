@@ -6,10 +6,12 @@ import { useQuestionsStore } from '@/stores/questions';
 import DetailItem from '@/components/DetailItem.vue';
 import { useSeoMeta } from '@/composables/useSeoMeta.ts';
 import { buildAbsoluteUrl } from '@/constants/seo.ts';
+import { useDisplay } from 'vuetify';
 
 const route = useRoute();
 const router = useRouter();
 const questionsStore = useQuestionsStore();
+const display = useDisplay();
 
 const episodeId = computed(() => String(route.params.id ?? ''));
 const questions = computed<QuestionRecord[]>(() => questionsStore.getByVideo(episodeId.value) ?? []);
@@ -183,8 +185,8 @@ onMounted(() => {
               :text="String(question.hint1 ?? '')"
               :revealed="isRevealed(String(question['question-id']), 'hint1')"
               :on-reveal="getRevealHandler(String(question['question-id']), 'hint1')"
+              :skeleton-type="display.mobile ? 'paragraph' : 'sentences'"
               label="Подсказка 1"
-              skeleton-type="sentences"
             />
 
             <DetailItem
@@ -192,8 +194,8 @@ onMounted(() => {
               :text="String(question.hint2 ?? '')"
               :revealed="isRevealed(String(question['question-id']), 'hint2')"
               :on-reveal="getRevealHandler(String(question['question-id']), 'hint2')"
+              :skeleton-type="display.mobile ? 'paragraph' : 'sentences'"
               label="Подсказка 2"
-              skeleton-type="sentences"
             />
 
             <DetailItem
@@ -290,7 +292,7 @@ onMounted(() => {
   gap: 14px;
 }
 
-.episode-alert{
+.episode-alert {
   position: fixed;
   bottom: 24px;
   right: 24px;
@@ -302,11 +304,16 @@ onMounted(() => {
   border-radius: 12px;
   background-color: rgba(var(--v-theme-surface), 0.95) !important;
   backdrop-filter: blur(10px);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
 }
 
 
 @media (max-width: 640px) {
+
+  .page-shell {
+    padding: 10px;
+  }
+
   .panel-title {
     grid-template-columns: auto 1fr 20px;
     gap: 10px;
