@@ -1,6 +1,7 @@
 #!/usr/bin/env node
-/* CSV-to-JSON converter for LockStockQuestions data.
-*/
+/*
+ * CSV-to-JSON converter for LockStockQuestions data.
+ */
 
 import fs from 'fs';
 import path from 'path';
@@ -58,6 +59,7 @@ function* parseCSVGenerator(text, delimiter = ';') {
         record.push(field);
         field = '';
       } else if (ch === '\r') {
+
         // ignore, handled on \n
       } else if (ch === '\n') {
         record.push(field);
@@ -72,6 +74,7 @@ function* parseCSVGenerator(text, delimiter = ';') {
 
   // last record
   if (inQuotes) {
+
     // tolerant close
     inQuotes = false;
   }
@@ -121,7 +124,8 @@ async function main() {
   try {
     for (const rec of parseCSVGenerator(text, delimiter)) {
       if (rowIndex === 0) {
-        header = rec.map((h) => (h === undefined || h === null ? '' : String(h).trim()));
+        header = rec.map(h => (h === undefined || h === null ? '' : String(h).trim()));
+
         // Validate minimal header presence
         if (!header.includes('video-id') || !header.includes('question-id')) {
           console.warn('Warning: header does not include video-id or question-id. Continuing but results may be invalid.');
@@ -129,7 +133,7 @@ async function main() {
       } else {
         const row = buildQuestionObjectFromRow(header, rec);
         const values = Object.values(row);
-        if (!values.some((v) => String(v || '').trim() !== '')) {
+        if (!values.some(v => String(v || '').trim() !== '')) {
           rowIndex++;
           continue; // empty row
         }

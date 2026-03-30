@@ -57,8 +57,18 @@ def build_grouped_questions(rows: Iterable[Dict[str, str]]) -> Dict[int, list]:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Convert a semicolon CSV of LockStock questions into JSON grouped by video-id.")
-    parser.add_argument("csv_path", type=Path, help="Path to the source questions.csv")
-    parser.add_argument("json_path", type=Path, help="Path where the JSON dump will be written")
+    parser.add_argument(
+        "--csv-path",
+        type=Path,
+        default=Path("./data/questions.csv"),
+        help="Path to the source questions.csv",
+    )
+    parser.add_argument(
+        "--json-path",
+        type=Path,
+        default=Path("./data/questions.json"),
+        help="Path where the JSON dump will be written",
+    )
     args = parser.parse_args()
 
     with args.csv_path.open(encoding="utf-8-sig", newline="") as csv_file:
