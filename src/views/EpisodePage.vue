@@ -46,6 +46,16 @@ const panelModel = computed<string[]>({
 type RevealState = { hint1: boolean; hint2: boolean; answer: boolean };
 const revealMap = ref<Record<string, RevealState>>({});
 
+const hintsType = computed(() => {
+  if (display.width.value <= 800) {
+    return 'paragraph';
+  } else if (display.width.value <= 1024) {
+    return 'sentences';
+  } else {
+    return 'list-item';
+  }
+});
+
 questions.value.forEach(q => {
   revealMap.value[String(q['question-id'])] = { hint1: false, hint2: false, answer: false };
 });
@@ -126,6 +136,7 @@ onMounted(() => {
       document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth' });
     });
   }
+  console.log(display.smAndDown.value);
 });
 </script>
 
@@ -185,7 +196,7 @@ onMounted(() => {
               :text="String(question.hint1 ?? '')"
               :revealed="isRevealed(String(question['question-id']), 'hint1')"
               :on-reveal="getRevealHandler(String(question['question-id']), 'hint1')"
-              :skeleton-type="display.mobile ? 'paragraph' : 'sentences'"
+              :skeleton-type="hintsType"
               label="Подсказка 1"
             />
 
@@ -194,7 +205,7 @@ onMounted(() => {
               :text="String(question.hint2 ?? '')"
               :revealed="isRevealed(String(question['question-id']), 'hint2')"
               :on-reveal="getRevealHandler(String(question['question-id']), 'hint2')"
-              :skeleton-type="display.mobile ? 'paragraph' : 'sentences'"
+              :skeleton-type="hintsType"
               label="Подсказка 2"
             />
 
