@@ -8,6 +8,7 @@ const { mdAndUp } = useDisplay();
 const isDesktop = computed(() => mdAndUp.value);
 
 const activeSection = ref('game-rules');
+const mobileToc = ref<HTMLDetailsElement | null>(null);
 
 onMounted(() => {
   const observer = new IntersectionObserver(entries => {
@@ -133,6 +134,9 @@ function handleTocSelect(id: string) {
     return;
   }
 
+  if (mobileToc.value) {
+    mobileToc.value.open = false;
+  }
   target.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 </script>
@@ -156,6 +160,20 @@ function handleTocSelect(id: string) {
           — интеллектуальное шоу, в котором логика, интуиция и блеф важны не меньше, чем точный ответ.
         </p>
       </header>
+
+      <details v-if="!isDesktop" ref="mobileToc" class="rules-mobile-toc">
+        <summary class="rules-mobile-toc-summary">
+          <span>Оглавление</span>
+          <v-icon icon="mdi-chevron-down" size="small" />
+        </summary>
+        <div class="rules-mobile-toc-content">
+          <TableOfContents
+            :sections="tocSections"
+            :active-id="activeSection"
+            @select="handleTocSelect"
+          />
+        </div>
+      </details>
 
       <div class="rules-cards">
         <section
@@ -264,10 +282,49 @@ function handleTocSelect(id: string) {
   gap: 12px;
 }
 
+.rules-mobile-toc {
+  overflow: hidden;
+  border: 1px solid rgba(var(--v-theme-primary), 0.35);
+  border-radius: 2px;
+  background: linear-gradient(145deg, rgb(var(--v-theme-surface)), rgb(var(--v-theme-background)));
+}
+
+.rules-mobile-toc-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 18px;
+  color: rgb(var(--v-theme-primary-lighten-1));
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  list-style: none;
+}
+
+.rules-mobile-toc-summary::-webkit-details-marker {
+  display: none;
+}
+
+.rules-mobile-toc-summary .v-icon {
+  transition: transform 0.2s ease;
+}
+
+.rules-mobile-toc[open] .rules-mobile-toc-summary .v-icon {
+  transform: rotate(180deg);
+}
+
+.rules-mobile-toc-content {
+  padding: 4px 16px 16px 0;
+  border-top: 1px solid rgba(var(--v-theme-primary), 0.16);
+}
+
 
 .rules-title {
   font-size: clamp(2rem, 2.5vw + 1.6rem, 2.8rem);
   color: rgb(var(--v-theme-primary-lighten-1));
+  font-family: var(--font-display);
+  font-weight: 600;
   margin: 0;
 }
 
@@ -279,14 +336,14 @@ function handleTocSelect(id: string) {
 
 .rules-card {
   scroll-margin-top: 96px;
-  background: rgb(var(--v-theme-surface));
-  border-radius: var(--v-border-radius);
+  background: linear-gradient(145deg, rgb(var(--v-theme-surface)), rgb(var(--v-theme-background)));
+  border-radius: 3px;
   padding: 32px;
-  border: 1px solid rgb(var(--v-theme-surface-variant));
+  border: 1px solid rgba(var(--v-theme-primary), 0.3);
   display: flex;
   flex-direction: column;
   gap: 24px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 14px 38px rgba(0, 0, 0, 0.2), inset 0 0 0 6px rgb(var(--v-theme-background)), inset 0 0 0 7px rgba(var(--v-theme-primary), 0.1);
 }
 
 .rules-card--accent {
@@ -296,7 +353,9 @@ function handleTocSelect(id: string) {
 .rules-section-title {
   margin: 0;
   font-size: 1.5rem;
-  color: rgb(var(--v-theme-primary-darken-1));
+  color: rgb(var(--v-theme-primary-lighten-1));
+  font-family: var(--font-display);
+  letter-spacing: 0.02em;
 }
 
 .rules-subsections {
@@ -321,7 +380,7 @@ function handleTocSelect(id: string) {
 .rules-subsection-title {
   margin: 0;
   font-size: 1.15rem;
-  color: rgb(var(--v-theme-primary-darken-1));
+  color: rgb(var(--v-theme-secondary));
   font-weight: 600;
 }
 
@@ -358,8 +417,9 @@ function handleTocSelect(id: string) {
 }
 
 .rules-step {
-  background: rgba(var(--v-theme-primary), 0.08);
-  border-radius: var(--v-border-radius);
+  background: rgba(var(--v-theme-primary), 0.07);
+  border: 1px solid rgba(var(--v-theme-primary), 0.16);
+  border-radius: 2px;
   padding: 14px 16px;
   display: flex;
   flex-direction: column;
@@ -368,7 +428,7 @@ function handleTocSelect(id: string) {
 
 .rules-step-title {
   font-weight: 700;
-  color: rgb(var(--v-theme-primary-darken-1));
+  color: rgb(var(--v-theme-primary-lighten-1));
 }
 
 .rules-step-text {

@@ -68,14 +68,17 @@ useSeoMeta(() => ({
 }
 
 .error-code {
+  font-family: var(--font-display),serif;
+  color: rgb(var(--v-theme-primary-lighten-1));
   font-size: clamp(6rem, 15vw, 10rem);
   font-weight: 900;
   line-height: 1;
-  text-shadow: 0 4px 12px rgba(185, 137, 19, 0.3);
+  text-shadow: 0 4px 24px rgba(var(--v-theme-primary), 0.25);
   letter-spacing: -2px;
 }
 
 .error-title {
+  font-family: var(--font-display);
   font-size: clamp(1.5rem, 4vw, 2.5rem);
   margin: 1rem 0;
   font-weight: 700;
@@ -85,7 +88,7 @@ useSeoMeta(() => ({
   font-size: 1.1rem;
   line-height: 1.6;
   margin-bottom: 3rem;
-  color: rgb(var(--v-theme-surface));
+  color: rgba(var(--v-theme-on-background), 0.72);
   opacity: 0.9;
 }
 
@@ -117,4 +120,3 @@ useSeoMeta(() => ({
   }
 }
 </style>
-

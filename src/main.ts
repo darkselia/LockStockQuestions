@@ -4,21 +4,25 @@ import { createPinia } from 'pinia';
 import App from './App.vue';
 import router from './router';
 import '@mdi/font/css/materialdesignicons.css';
+import '@/assets/site.css';
 
 import 'vuetify/styles';
 import { createVuetify } from 'vuetify';
 import * as components from 'vuetify/components';
 import * as directives from 'vuetify/directives';
 
-import { myCustomGoldTheme } from '@/assets/theme';
+import { myCustomGoldTheme, myCustomLightTheme } from '@/assets/theme';
 import { ru } from 'vuetify/locale';
+
+const savedTheme = localStorage.getItem('lockstock-theme');
+const initialTheme = savedTheme === 'myCustomLightTheme' ? savedTheme : 'myCustomGoldTheme';
 
 const vuetify = createVuetify({
   components,
   directives,
   theme: {
-    defaultTheme: 'myCustomGoldTheme',
-    themes: { myCustomGoldTheme },
+    defaultTheme: initialTheme,
+    themes: { myCustomGoldTheme, myCustomLightTheme },
   },
   locale: {
     locale: 'ru',

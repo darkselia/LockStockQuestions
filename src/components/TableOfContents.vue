@@ -52,7 +52,7 @@ function handleLinkClick(id: string, event: MouseEvent) {
   text-transform: uppercase;
   letter-spacing: 0.25em;
   font-size: 0.75rem;
-  color: rgba(var(--v-theme-on-background));
+  color: rgba(var(--v-theme-on-background), 0.62);
   padding-left: 16px;
 }
 
@@ -66,7 +66,7 @@ function handleLinkClick(id: string, event: MouseEvent) {
   display: flex;
   align-items: center;
   padding: 8px 16px;
-  border-radius: 0 24px 24px 0;
+  border-radius: 0 2px 2px 0;
   border-left: 3px solid transparent;
   color: rgb(var(--v-theme-primary));
   text-decoration: none;
@@ -75,9 +75,9 @@ function handleLinkClick(id: string, event: MouseEvent) {
 }
 
 .toc-link--active {
-  background: rgba(var(--v-theme-primary), 0.12);
+  background: linear-gradient(90deg, rgba(var(--v-theme-primary), 0.16), transparent);
   border-left-color: rgb(var(--v-theme-primary));
-  color: rgb(var(--v-theme-primary-lighten-1));
+  color: rgb(var(--v-theme-secondary-lighten-1));
   font-weight: 600;
 }
 

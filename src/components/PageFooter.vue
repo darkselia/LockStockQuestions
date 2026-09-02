@@ -93,9 +93,15 @@ function fallbackCopyTextToClipboard(text: string) {
 
 <style scoped>
 .site-footer {
-  padding: 20px;
-  background: linear-gradient(135deg, rgb(var(--v-theme-primary)) 0%, rgb(var(--v-theme-primary-darken-1)) 100%);
-  color: rgb(var(--v-theme-on-primary));
+  padding: 32px 20px;
+  border-top: 1px solid rgba(var(--v-theme-primary), 0.55);
+  background: linear-gradient(
+    135deg,
+    rgb(var(--v-theme-background)) 0%,
+    rgb(var(--v-theme-surface)) 50%,
+    rgb(var(--v-theme-background)) 100%
+  );
+  color: rgb(var(--v-theme-on-surface));
 }
 
 .footer {
@@ -118,15 +124,16 @@ function fallbackCopyTextToClipboard(text: string) {
 }
 
 .footer-title {
+  font-family: var(--font-display);
   font-size: 16px;
-  font-weight: 1000;
-  color: rgb(var(--v-theme-secondary-lighter-1));
+  font-weight: 700;
+  color: rgb(var(--v-theme-primary-lighten-1));
   margin-bottom: 6px;
   letter-spacing: 0.02em;
 }
 
 .footer-text {
-  color: rgba(var(--v-theme-on-primary), 0.85);
+  color: rgba(var(--v-theme-on-surface), 0.72);
 }
 
 .footer-contacts {
@@ -149,7 +156,7 @@ function fallbackCopyTextToClipboard(text: string) {
   top: -38px;
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(var(--v-theme-primary));
+  background: rgb(var(--v-theme-primary));
   color: rgb(var(--v-theme-on-primary));
   padding: 6px 8px;
   border-radius: 6px;
@@ -162,7 +169,7 @@ function fallbackCopyTextToClipboard(text: string) {
 }
 
 .footer-contact:hover {
-  background: rgba(var(--v-theme-on-primary), 0.16);
+  background: rgba(var(--v-theme-primary), 0.16);
   transform: translateY(-2px);
 }
 </style>

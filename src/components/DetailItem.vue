@@ -32,15 +32,17 @@ defineProps<{
   display: flex;
   flex-direction: column;
   gap: 12px;
-  background: rgb(var(--v-theme-surface));
-  border-radius: 12px;
-  padding: 12px;
-  border: 2px solid rgb(var(--v-theme-surface-variant));
+  background: rgba(255, 255, 255, 0.025);
+  border-radius: 2px;
+  padding: 14px;
+  border: 1px solid rgba(var(--v-theme-primary), 0.22);
 }
 
 .detail-label {
   font-size: 0.9rem;
-  color: rgb(var(--v-theme-secondary-darken-1));
+  color: rgb(var(--v-theme-primary-lighten-1));
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   font-weight: 700;
 }
 

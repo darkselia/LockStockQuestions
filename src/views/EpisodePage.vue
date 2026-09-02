@@ -129,14 +129,20 @@ function hasText(value: unknown) {
 
 onMounted(() => {
   const parsed = parseQueryToPanels();
-  panelModel.value = parsed;
   if (parsed.length === 1) {
     const targetId = 'question-' + parsed[0];
     nextTick(function() {
-      document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth' });
+      requestAnimationFrame(function() {
+        const target = document.getElementById(targetId);
+        if (!target) {
+          return;
+        }
+
+        const top = target.getBoundingClientRect().top + window.scrollY - 60;
+        window.scrollTo({ top, behavior: 'smooth' });
+      });
     });
   }
-  console.log(display.smAndDown.value);
 });
 </script>
 
@@ -247,11 +253,15 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   margin-left: 16px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(var(--v-theme-primary), 0.35);
 }
 
 .page-header h1 {
   font-size: 48px;
   color: rgb(var(--v-theme-primary-lighten-1));
+  font-family: var(--font-display);
+  font-weight: 600;
 }
 
 .eyebrow {
@@ -259,6 +269,7 @@ onMounted(() => {
   text-transform: uppercase;
   font-size: 0.75rem;
   font-weight: 700;
+  color: rgba(var(--v-theme-on-background), 0.58);
 }
 
 .empty-state {
@@ -284,9 +295,10 @@ onMounted(() => {
   justify-content: center;
   width: 40px;
   height: 40px;
-  border-radius: 10px;
-  background: rgb(var(--v-theme-secondary-lighten-1));
-  color: rgb(var(--v-theme-primary));
+  border-radius: 2px;
+  border: 1px solid rgba(var(--v-theme-primary), 0.65);
+  background: rgba(var(--v-theme-primary), 0.1);
+  color: rgb(var(--v-theme-primary-lighten-1));
   font-weight: 800;
   margin-top: -2px;
 }
@@ -296,6 +308,13 @@ onMounted(() => {
   font-weight: 600;
   line-height: 1.4;
   padding-top: 4px;
+}
+
+.question-panel {
+  border: 1px solid rgba(var(--v-theme-primary), 0.22);
+  border-radius: 2px !important;
+  background: linear-gradient(145deg, rgb(var(--v-theme-surface)), rgb(var(--v-theme-background))) !important;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22) !important;
 }
 
 .answer-card {
@@ -312,8 +331,8 @@ onMounted(() => {
   width: 100%;
   font-size: 13px;
   line-height: 1.5;
-  border-radius: 12px;
-  background-color: rgba(var(--v-theme-surface), 0.95) !important;
+  border-radius: 2px;
+  background-color: rgb(var(--v-theme-surface)) !important;
   backdrop-filter: blur(10px);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
 }

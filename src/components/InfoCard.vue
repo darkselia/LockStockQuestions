@@ -36,21 +36,44 @@ const hasContentSlot = computed(() => Boolean(slots.content));
 
 <style scoped>
 .card {
+  position: relative;
+  isolation: isolate;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 28px;
+  grid-template-columns: minmax(0, 1.2fr) minmax(260px, 0.8fr);
+  gap: clamp(28px, 5vw, 72px);
   align-items: center;
-  background: linear-gradient(
-    135deg,
-    rgb(var(--v-theme-primary-lighten-1)) 0%,
-    rgb(var(--v-theme-primary-darken-1)) 100%
-  );
-  padding: clamp(25px, 2vw + 20px, 60px);
-  box-shadow: 0 20px 50px rgba(var(--v-theme-primary-darken-1), 0.25);
-  border-radius: 24px;
+  overflow: hidden;
+  padding: clamp(36px, 5vw, 72px);
   margin: 0 20px 30px;
-  border-bottom: 10px solid rgb(var(--v-theme-primary-darken-1));
-  border-right: 10px solid rgb(var(--v-theme-primary-darken-1));
+  border: 1px solid rgba(var(--v-theme-primary-lighten-1), 0.7);
+  border-radius: 4px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(var(--v-theme-primary), 0.12), transparent 45%),
+    linear-gradient(145deg, rgb(var(--v-theme-surface)) 0%, rgb(var(--v-theme-background)) 70%);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.42), inset 0 0 45px rgba(255, 255, 255, 0.025);
+}
+
+.card::before,
+.card::after {
+  position: absolute;
+  z-index: -1;
+  content: '';
+  pointer-events: none;
+}
+
+.card::before {
+  inset: 10px;
+  border: 1px solid rgba(var(--v-theme-primary), 0.45);
+}
+
+.card::after {
+  top: 18px;
+  right: 50%;
+  width: 14px;
+  height: 14px;
+  border: 1px solid rgb(var(--v-theme-primary-lighten-1));
+  background: rgb(var(--v-theme-surface));
+  transform: translateX(50%) rotate(45deg);
 }
 
 .card-text {
@@ -59,24 +82,28 @@ const hasContentSlot = computed(() => Boolean(slots.content));
 }
 
 .card-eyebrow {
-  letter-spacing: 0.3em;
+  letter-spacing: 0.34em;
   text-transform: uppercase;
   font-size: 0.75rem;
   font-weight: 700;
-  color: rgba(var(--v-theme-on-primary), 0.85);
+  color: rgb(var(--v-theme-primary-lighten-1));
   margin: 0;
 }
 
 .card-title {
-  font-size: clamp(2rem, 3vw, 2.6rem);
+  max-width: 720px;
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 4.5vw, 4rem);
+  font-weight: 600;
+  letter-spacing: -0.035em;
   margin: 0;
-  line-height: 1.2;
-  color: rgb(var(--v-theme-on-primary));
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+  line-height: 1.02;
+  color: rgb(var(--v-theme-primary));
+  text-shadow: 0 3px 18px rgba(var(--v-theme-primary), 0.12);
 }
 
 .card-description {
-  color: rgba(var(--v-theme-on-primary), 0.9);
+  color: rgba(var(--v-theme-on-surface), 0.76);
   margin: 0;
   max-width: 560px;
 }
@@ -92,12 +119,13 @@ const hasContentSlot = computed(() => Boolean(slots.content));
 
 @media (max-width: 720px) {
   .card {
-    padding: 28px;
+    grid-template-columns: minmax(0, 1fr);
+    padding: 36px 26px;
+    margin-inline: 12px;
   }
 
   .card-title {
-    font-size: 2rem;
+    font-size: clamp(2rem, 10vw, 3rem);
   }
 }
 </style>
-
