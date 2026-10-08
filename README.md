@@ -1,7 +1,7 @@
-# LockStockQuestions
+# Lockstock-fanVault
 
 ## Описание
-LockStockQuestions — неофициальный каталог вопросов из шоу «LockStock. Ставка на знания».
+Lockstock-fanVault — неофициальный каталог вопросов из шоу «LockStock. Ставка на знания».
 Приложение собирает вопросы, подсказки и ответы по выпускам, чтобы удобно просматривать их в одном месте и быстро переходить
 к нужному эпизоду.
 
@@ -15,8 +15,7 @@ LockStockQuestions — неофициальный каталог вопросо�
 Проект создан в образовательных и некоммерческих целях и не связан с создателями шоу.
 
 ## Сайт проекта
-[Посетить сайт LockStockQuestions](https://darkselia.github.io/LockStockQuestions)
-[Посетить сайт LockStockQuestions](https://lock-stock-questions.vercel.app)
+[Посетить сайт LockStockQuestions](https://lockstock-fanvault.darkselia.ru)
 
 
 ## Установка
