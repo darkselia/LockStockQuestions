@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted, ref, nextTick } from 'vue';
+import { computed, nextTick, onMounted, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import type { QuestionRecord } from '@/types/types';
 import { useQuestionsStore } from '@/stores/questions';
@@ -18,8 +18,8 @@ const questions = computed<QuestionRecord[]>(() => questionsStore.getByVideo(epi
 const allowedIds = new Set(questions.value.map(q => String(q['question-id'])));
 
 useSeoMeta(() => ({
-  title: `Выпуск №${episodeId.value} - Вопросы и ответы`,
-  description: `Список вопросов, подсказок и ответов из выпуска №${episodeId.value} шоу LockStock.`,
+  title: `Выпуск №${episodeId.value}: вопросы и ответы`,
+  description: `Вопросы, подсказки и ответы из выпуска №${episodeId.value} шоу «Лок Сток», собранные в фанатском хранилище.`,
   canonical: buildAbsoluteUrl(`/episode/${episodeId.value}`),
 }));
 
@@ -166,7 +166,7 @@ onMounted(() => {
       </p>
       <h1>№ {{ episodeId }}</h1>
       <p class="subtitle">
-        Вопросы, подсказки и ответы из шоу LockStock
+        Вопросы, подсказки и ответы из фанатского хранилища «Лок Сток»
       </p>
     </header>
 

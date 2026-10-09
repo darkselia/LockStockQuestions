@@ -27,10 +27,10 @@ onMounted(() => {
 
 <template>
   <v-navigation-drawer v-if="!smAndUp" v-model="isMenuOpen" aria-label="Мобильное меню">
-    <v-list-item title="Вопросы из шоу LockStock" />
+    <v-list-item title="Хранилище вопросов «Лок Сток»" />
     <v-divider class="mb-2" color="rgb(var(--v-theme-primary-darken-1))" />
     <v-list-item :to="{ path: '/', hash: '#episodes' }" link title="Все выпуски" />
-    <v-list-item :to="{ name: 'rules' }" link title="Правила шоу" />
+    <v-list-item :to="{ name: 'rules' }" link title="Правила игры" />
   </v-navigation-drawer>
 
   <v-app-bar
@@ -42,7 +42,7 @@ onMounted(() => {
   >
     <v-app-bar-title>
       <div v-if="smAndUp" class="prepend">
-        <router-link class="title" to="/" aria-label="На главную LockStock Questions">
+        <router-link class="title" to="/" aria-label="На главную хранилища вопросов «Лок Сток»">
           <img
             alt="Карточки шоу LockStock"
             class="icon"
@@ -50,11 +50,11 @@ onMounted(() => {
             loading="eager"
             decoding="async"
           />
-          <span class="brand-name">Вопросы из шоу LockStock</span>
+          <span class="brand-name">Хранилище вопросов «Лок Сток»</span>
         </router-link>
       </div>
       <div v-else class="text-center mr-4 mobile-title">
-        Вопросы из шоу LockStock
+        Хранилище вопросов «Лок Сток»
       </div>
     </v-app-bar-title>
 
@@ -68,7 +68,7 @@ onMounted(() => {
           Все выпуски
         </v-btn>
         <v-btn :to="{ name: 'rules' }" variant="text" color="primary-lighten-1">
-          Правила шоу
+          Правила игры
         </v-btn>
       </div>
       <v-btn

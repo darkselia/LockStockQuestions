@@ -19,7 +19,11 @@ const { hostname, pathname, search, hash } = window.location;
 const siteUrl = new URL(SITE_ORIGIN);
 let migrationTarget: string | null = null;
 
-if (hostname !== siteUrl.hostname && !['localhost', '127.0.0.1', '[::1]'].includes(hostname)) {
+if (hostname !== siteUrl.hostname && ![
+  'localhost',
+  '127.0.0.1',
+  '[::1]',
+].includes(hostname)) {
   const route = hostname === 'github.io' || hostname.endsWith('.github.io')
     ? pathname.replace(/^\/LockStockQuestions(?=\/|$)/i, '') || '/'
     : pathname;

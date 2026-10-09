@@ -46,7 +46,7 @@ function fallbackCopyTextToClipboard(text: string) {
       <div class="footer-column">
         <span class="footer-title">О проекте</span>
         <span class="footer-text">
-          Неофициальная коллекция вопросов из шоу LockStock. <br>
+          Фанатское хранилице вопросов из шоу LockStock. <br>
           Создано фанатом для фанатов.
         </span>
       </div>

@@ -10,7 +10,7 @@ const router = useRouter();
 const displayPath = computed(() => decodeURIComponent(route.fullPath || '/'));
 
 useSeoMeta(() => ({
-  title: 'Страница не найдена (404)',
+  title: 'Страница не найдена',
   description: 'Запрошенная страница не существует.',
   canonical: buildAbsoluteUrl('/404'),
 }));

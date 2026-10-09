@@ -3,7 +3,7 @@ import { computed } from 'vue';
 import { RouterLink, useRouter } from 'vue-router';
 import { useSeoMeta } from '@/composables/useSeoMeta';
 import { useStructuredData } from '@/composables/useStructuredData';
-import { buildAbsoluteUrl } from '@/constants/seo';
+import { buildAbsoluteUrl, DEFAULT_DESCRIPTION, SITE_NAME } from '@/constants/seo';
 import { useQuestionsStore } from '@/stores/questions';
 import Card from '@/components/InfoCard.vue';
 
@@ -33,13 +33,8 @@ const metadata = computed(() => {
 });
 
 const heroImageUrl = buildAbsoluteUrl('/cards.webp');
-const seoCopy = {
-  description:
-    `Просматривайте вопросы, подсказки и ответы из ${metadata.value.totalEpisodes} выпусков шоу Лок Сток.`,
-};
-
 useSeoMeta(() => ({
-  description: seoCopy.description,
+  description: `Просматривайте вопросы, подсказки и ответы из ${metadata.value.totalEpisodes} выпусков шоу Лок Сток.`,
   canonical: '/',
   image: heroImageUrl,
 }));
@@ -47,9 +42,9 @@ useSeoMeta(() => ({
 useStructuredData('home-website', () => ({
   '@context': 'https://schema.org',
   '@type': 'WebSite',
-  name: 'Вопросы из шоу Лок Сток',
+  name: SITE_NAME,
   url: buildAbsoluteUrl('/'),
-  description: seoCopy.description,
+  description: DEFAULT_DESCRIPTION,
   image: heroImageUrl,
   potentialAction: {
     '@type': 'SearchAction',
@@ -120,13 +115,14 @@ function handleRandom(type: 'episode' | 'question') {
           target="_blank"
           rel="noopener noreferrer"
         >'LockStock Ставка на знания'</a>.
-        Все материалы принадлежат авторам шоу и используются здесь без коммерческой выгоды.
+        Все материалы принадлежат авторам шоу. Проект создан в образовательных и некоммерческих целях
+        и не связан с создателями шоу.
       </v-alert>
     </section>
 
     <Card
+      :title="SITE_NAME"
       eyebrow="LockStock. Ставка на знания"
-      title="Все вопросы шоу Лок Сток в одном каталоге"
       description="Этот проект создан исключительно в образовательных и некоммерческих целях
           и не связан с создателями шоу."
     >
