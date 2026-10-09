@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, follow">
+    <title>Страница не найдена</title>
+    <meta name="description" content="Запрошенная страница отсутствует">
+    <style>
+      #site-move {
+        box-sizing: border-box; width: calc(100% - 48px); max-width: 600px;
+        padding: 28px; border: 1px solid #bd9c53; border-radius: 8px;
+        background: #1d2029; color: #f7f3e8; font: 18px/1.6 system-ui, sans-serif;
+      }
+      #site-move::backdrop { background: rgba(12, 14, 20, .9); }
+      #site-move h2 { margin: 0 0 16px; line-height: 1.3; }
+      #site-move a { color: #efcf82; overflow-wrap: anywhere; }
+      #site-move-progress {
+        display: block; width: 100%; height: 6px; margin: 12px 0 20px; accent-color: #efcf82;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Страница не найдена</h1>
+      <p>Проверьте адрес или <a href="https://lockstock-fanvault.darkselia.ru/">откройте основной сайт</a>.</p>
+    </main>
+    <dialog id="site-move" aria-labelledby="site-move-title" aria-describedby="site-move-description">
+      <h2 id="site-move-title">Сайт переехал!</h2>
+      <div id="site-move-description">
+        <p>Основной адрес: <a id="site-move-address" href="https://lockstock-fanvault.darkselia.ru/">https://lockstock-fanvault.darkselia.ru</a></p>
+        <p>Сохраните новый адрес сайта в закладках.
+          Старые адреса GitHub Pages и Vercel перестанут работать с 2027 года.</p>
+        <p>Автоматический переход на ту же страницу через
+          <strong id="site-move-countdown" role="timer">8 с.</strong></p>
+      </div>
+      <progress id="site-move-progress" value="8" max="8" aria-label="Оставшееся время до перехода"></progress>
+      <a id="site-move-continue" href="https://lockstock-fanvault.darkselia.ru/">Перейти сейчас</a>
+    </dialog>
+    <noscript>
+      <p>Включите JavaScript для автоматической обработки адреса страницы.</p>
+    </noscript>
+    <script>
+      (() => {
+        const { hostname, pathname, search, hash } = window.location;
+        const address = document.getElementById('site-move-address');
+        const siteUrl = new URL(address.href);
+        if (hostname === siteUrl.hostname || ['localhost', '127.0.0.1', '[::1]'].includes(hostname)) return;
+
+        const notice = document.getElementById('site-move');
+        const proceed = document.getElementById('site-move-continue');
+        const countdown = document.getElementById('site-move-countdown');
+        const progress = document.getElementById('site-move-progress');
+        const route = hostname === 'github.io' || hostname.endsWith('.github.io')
+          ? pathname.replace(/^\/LockStockQuestions(?=\/|$)/i, '') || '/'
+          : pathname;
+        const target = `${siteUrl.origin}${route}${search}${hash}`;
+        let remainingSeconds = 8;
+        let redirectTimer;
+        let countdownTimer;
+        const redirect = () => {
+          window.clearTimeout(redirectTimer);
+          window.clearInterval(countdownTimer);
+          window.location.replace(target);
+        };
+        for (const link of [address, proceed]) {
+          link.href = target;
+          link.addEventListener('click', event => {
+            event.preventDefault();
+            redirect();
+          });
+        }
+        notice.addEventListener('cancel', event => event.preventDefault());
+        notice.showModal();
+        proceed.focus();
+        countdownTimer = window.setInterval(() => {
+          remainingSeconds = Math.max(0, remainingSeconds - 1);
+          countdown.textContent = `${remainingSeconds} с.`;
+          progress.value = remainingSeconds;
+        }, 1000);
+        redirectTimer = window.setTimeout(redirect, 8000);
+      })();
+    </script>
+  </body>
+</html>
