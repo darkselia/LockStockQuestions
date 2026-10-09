@@ -29,6 +29,14 @@ export function useSeoMeta(input: SeoMetaInput | (() => SeoMetaInput)) {
     updateMeta('name', 'description', description);
     updateMeta('name', 'robots', 'index, follow');
 
+    const canonicalLink = document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]') ??
+      document.createElement('link');
+    canonicalLink.rel = 'canonical';
+    canonicalLink.href = canonical;
+    if (!canonicalLink.isConnected) {
+      document.head.appendChild(canonicalLink);
+    }
+
     updateMeta('property', 'og:title', title);
     updateMeta('property', 'og:description', description);
     updateMeta('property', 'og:type', ogType);

@@ -17,7 +17,6 @@ Lockstock-fanVault — неофициальный каталог вопросо�
 ## Сайт проекта
 [Посетить сайт LockStockQuestions](https://lockstock-fanvault.darkselia.ru)
 
-
 ## Установка
 
 1. Склонируйте репозиторий:

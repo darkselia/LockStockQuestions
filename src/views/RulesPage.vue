@@ -3,6 +3,13 @@
 import { computed, ref, onMounted, nextTick } from 'vue';
 import { useDisplay } from 'vuetify';
 import TableOfContents from '@/components/TableOfContents.vue';
+import { useSeoMeta } from '@/composables/useSeoMeta';
+
+useSeoMeta({
+  title: 'Правила игры «Лок Сток. Ставка на знания»',
+  description: 'Правила игры Лок Сток: ставки, подсказки, определение победителя и вариант для домашней игры.',
+  canonical: '/rules',
+});
 
 const { mdAndUp } = useDisplay();
 const isDesktop = computed(() => mdAndUp.value);
@@ -323,7 +330,7 @@ function handleTocSelect(id: string) {
 .rules-title {
   font-size: clamp(2rem, 2.5vw + 1.6rem, 2.8rem);
   color: rgb(var(--v-theme-primary-lighten-1));
-  font-family: var(--font-display);
+  font-family: var(--font-display),sans-serif;
   font-weight: 600;
   margin: 0;
 }
@@ -354,7 +361,7 @@ function handleTocSelect(id: string) {
   margin: 0;
   font-size: 1.5rem;
   color: rgb(var(--v-theme-primary-lighten-1));
-  font-family: var(--font-display);
+  font-family: var(--font-display),sans-serif;
   letter-spacing: 0.02em;
 }
 

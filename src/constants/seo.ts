@@ -1,12 +1,5 @@
-function resolveSiteOrigin() {
-  const envOrigin = (import.meta.env?.VITE_SITE_URL ?? '').trim();
-  const runtimeOrigin = typeof window !== 'undefined' && window.location?.origin ? window.location.origin : '';
-  const fallbackOrigin = 'https://lock-stock-questions.vercel.app';
-  const rawOrigin = envOrigin || runtimeOrigin || fallbackOrigin;
-  return rawOrigin.replace(/\/$/, '');
-}
-
-export const SITE_ORIGIN = resolveSiteOrigin();
+export const SITE_ORIGIN = ((import.meta.env.VITE_SITE_URL ?? '').trim() ||
+  'https://lockstock-fanvault.darkselia.ru/').replace(/\/+$/, '');
 export const SITE_NAME = 'Лок Сток Игра Вопросы';
 export const DEFAULT_TITLE = 'Каталог вопросов из шоу «Лок Сток. Ставка на знания»';
 export const DEFAULT_DESCRIPTION = 'Неофициальный каталог вопросов и ответов из шоу «Лок Сток. Ставка на знания».' +

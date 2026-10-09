@@ -4,11 +4,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "prebuild": "node ./scripts/generate-sitemap.mjs",
     "dev": "vite",
-    "build": "run-p type-check \"build-only {@}\" -- && npm run sitemap",
+    "build": "run-p type-check \"build-only {@}\" --",
     "preview": "vite preview",
     "build-only": "vite build",
+    "postbuild-only": "npm run sitemap",
     "type-check": "vue-tsc --build --force",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "sitemap": "node ./scripts/generate-sitemap.mjs"
